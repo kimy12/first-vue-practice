@@ -5,14 +5,39 @@
     <span class="addContainer" v-on:click="addTodo">
       <i class="fa-solid fa-plus addBtn"></i>
     </span>
+
+      <Modal v-if="showModal" @close="showModal = false">
+        <!--
+      you can use custom content here to overwrite
+      default content
+    -->
+        <h3 slot="header">
+          경고!
+        </h3>
+
+        <p slot="body">
+          내용을 입력하세요
+        </p>
+
+        <p slot="footer">
+          확인
+          <i class="fa-solid fa-circle-check" @click="(showModal = false)"></i>
+          <!-- <button class="modal-default-button" @click="$emit('close')">
+            OK
+          </button> -->
+        </p>
+      </Modal>
   </div>
 </template>
 
 <script>
+import Modal from './common/AlertModal.vue'
+
 export default {
   data :function (){
     return {
-      newTodoItem : ""
+      newTodoItem : "",
+      showModal : false
     }
   },
   methods : {
@@ -21,11 +46,17 @@ export default {
         //this.$emit('이벤트 이름', 인자1, 인자2, 인자3...);
         this.$emit('addTodoItem', this.newTodoItem);
         this.clearInput();
+      } else {
+        //this.showModal = true;
+        this.showModal = !this.showModal;
       }
     },
     clearInput : function(){
       this.newTodoItem = '';
     }
+  },
+  components : {
+    Modal : Modal
   }
 }
 </script>
