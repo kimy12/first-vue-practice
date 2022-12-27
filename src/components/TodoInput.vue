@@ -1,6 +1,6 @@
 <template>
   <div class="inputBox shadow">
-    <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo">
+    <input type="text" v-model="newTodoItem" v-on:keydown.enter="addTodo">
     <!-- <button v-on:click="addTodo">add</button> -->
     <span class="addContainer" v-on:click="addTodo">
       <i class="fa-solid fa-plus addBtn"></i>
@@ -42,7 +42,7 @@ export default {
   },
   methods : {
     addTodo : function (){
-      if (this.newTodoItem !== ''){
+      if (this.newTodoItem != ''){
         //this.$emit('이벤트 이름', 인자1, 인자2, 인자3...);
         this.$emit('addTodoItem', this.newTodoItem);
         this.clearInput();
