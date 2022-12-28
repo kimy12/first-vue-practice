@@ -6,27 +6,18 @@
       <i class="fa-solid fa-plus addBtn"></i>
     </span>
 
-      <Modal v-if="showModal" @close="showModal = false">
-        <!--
-      you can use custom content here to overwrite
-      default content
-    -->
-        <h3 slot="header">
-          경고!
-        </h3>
-
-        <p slot="body">
-          내용을 입력하세요
-        </p>
-
-        <p slot="footer">
-          확인
-          <i class="fa-solid fa-circle-check" @click="(showModal = false)"></i>
-          <!-- <button class="modal-default-button" @click="$emit('close')">
-            OK
-          </button> -->
-        </p>
-      </Modal>
+    <Modal v-if="showModal" @close="showModal = false">
+      <h3 slot="header">
+        경고!
+      </h3>
+      <p slot="body">
+        내용을 입력하세요
+      </p>
+      <p slot="footer">
+        확인
+        <i class="fa-solid fa-circle-check" @click="(showModal = false)"></i>
+      </p>
+    </Modal>
   </div>
 </template>
 

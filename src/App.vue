@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     addOneItem: function(todoItem){
-      var obj = {completed: false , item:todoItem};
+      const obj = {completed: false , item:todoItem};
       localStorage.setItem(todoItem,JSON.stringify(obj));
       this.todoItems.push(obj);
     },
@@ -44,7 +44,7 @@ export default {
   //인스턴스가 생성되자마자 호출되는 라이프 사이클 훅
   created : function(){
     if (localStorage.length > 0){
-      for (var i =0; i<localStorage.length; i++){
+      for (let i =0; i<localStorage.length; i++){
         if(localStorage.key(i) !== 'loglevel:webpack-dev-server'){
           this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
           //this.todoItems.push(localStorage.key(i));
