@@ -15,34 +15,34 @@ import TodoFooter from './components/TodoFooter.vue'
 
 
 export default {
-  data: function (){
+  data(){
     return {
       todoItems: []
     }
   },
   methods: {
-    addOneItem: function(todoItem){
+    addOneItem(todoItem){
       const obj = {completed: false , item:todoItem};
       localStorage.setItem(todoItem,JSON.stringify(obj));
       this.todoItems.push(obj);
     },
-    removeOneItem : function (todoItem, index){
+    removeOneItem(todoItem, index){
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1);
     },
-    toggleOneItem: function(todoItem, index) {
+    toggleOneItem(todoItem, index) {
       //todoItem.completed = !todoItem.completed;
       this.todoItems[index].completed = !this.todoItems[index].completed;
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     },
-    clearAllItems: function(){
+    clearAllItems(){
       localStorage.clear();
       this.todoItems = [];
     }
   },
   //인스턴스가 생성되자마자 호출되는 라이프 사이클 훅
-  created : function(){
+  created(){
     if (localStorage.length > 0){
       for (let i =0; i<localStorage.length; i++){
         if(localStorage.key(i) !== 'loglevel:webpack-dev-server'){
