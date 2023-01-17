@@ -4,8 +4,13 @@
       <li v-for="(todoItem, index) in this.storedTodoItems" v-bind:key="todoItem.item" class="shadow">
         <i class="fa-solid fa-check checkBtn" v-bind:class="{checkBtnCompleted: todoItem.completed}" v-on:click="toggleComplete({todoItem, index})"></i>
         <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
-        <span class="removeBtn" v-on:click="removeTodo({todoItem, index})">
-          <i class="fa-solid fa-trash-can"></i>
+        <span class="btnBox">
+          <span class="modifyBtn" v-on:click="modifyTodo({todoItem, index})">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </span>
+          <span class="removeBtn" v-on:click="removeTodo({todoItem, index})">
+            <i class="fa-solid fa-trash-can"></i>
+          </span>
         </span>
       </li>
     </TransitionGroup>
@@ -64,9 +69,17 @@ ul {
     text-decoration: line-through;
     color: #b3adad;
   }
-  .removeBtn {
+  .btnBox {
     margin-left: auto;
+  }
+  .removeBtn {
+    /* margin-left: auto; */
     color: #de4343;
+  }
+  .modifyBtn {
+    margin-right: 12px;
+    /* margin-left: auto; */
+    color: #696969;
   }
 
   .list-enter-active,
