@@ -1,6 +1,6 @@
 <template>
   <div class="inputBox shadow">
-    <input type="text" v-model="newTodoItem" v-on:keydown.enter="addTodo">
+    <input type="text" v-model="newTodoItem" v-on:keydown.enter="addTodo" placeholder="입력하세요.">
     <!-- <button v-on:click="addTodo">add</button> -->
     <span class="addContainer" v-on:click="addTodo">
       <i class="fa-solid fa-plus addBtn"></i>
@@ -23,6 +23,7 @@
 
 <script>
 import Modal from './common/AlertModal.vue'
+import { mapMutations } from 'vuex'
 
 export default {
   data :function (){
@@ -31,23 +32,32 @@ export default {
       showModal : false
     }
   },
-  methods : {
-    addTodo(){
-      if (this.newTodoItem != ''){
-        //this.$emit('이벤트 이름', 인자1, 인자2, 인자3...);
-        //this.$emit('addTodoItem', this.newTodoItem);
-        const text = this.newTodoItem.trim();
-        this.$store.commit('addOneItem', text);
-        this.clearInput();
-      } else {
-        //this.showModal = true;
-        this.showModal = !this.showModal;
-      }
-    },
-    clearInput(){
-      this.newTodoItem = '';
-    }
+  methods: {
+    ...mapMutations({
+      addTodo: 'addOneItem',
+      clearInput: 'clearAllItems'
+    })
   },
+  computed:{
+
+  },
+  // methods : {
+  //   addTodo(){
+  //     if (this.newTodoItem != ''){
+  //       //this.$emit('이벤트 이름', 인자1, 인자2, 인자3...);
+  //       //this.$emit('addTodoItem', this.newTodoItem);
+  //       const text = this.newTodoItem.trim();
+  //       this.$store.commit('addOneItem', text);
+  //       this.clearInput();
+  //     } else {
+  //       //this.showModal = true;
+  //       this.showModal = !this.showModal;
+  //     }
+  //   },
+  //   clearInput(){
+  //     this.newTodoItem = '';
+  //   }
+  // },
   components : {
     Modal
   }

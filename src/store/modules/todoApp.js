@@ -15,7 +15,8 @@
 }
   
   const state= {
-    todoItems: storage.fetch()
+    todoItems: storage.fetch(),
+    inputItem: ""
   };
 
   const getters = {
@@ -26,9 +27,19 @@
   const mutations = {
     addOneItem(state, todoItem) {
     const obj = {completed: false , item:todoItem};
-    localStorage.setItem(todoItem,JSON.stringify(obj));
-    state.todoItems.push(obj);
+    if(todoItem != ''){
+      localStorage.setItem(todoItem,JSON.stringify(obj));
+      state.todoItems.push(obj);
+    } else {
+      this.showModal = !this.showModal;
+    } 
   },
+
+  // 글 수정
+  // updateOneItem(state, payload){
+  //   localStorage.removeItem(payload.todoItem.item);
+  //   state.todoItems.splice(payload.index, 1);
+  // },
 
   removeOneItem(state, payload){
     localStorage.removeItem(payload.todoItem.item);

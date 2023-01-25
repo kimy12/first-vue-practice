@@ -1,13 +1,21 @@
   const addOneItem = (state, todoItem) => {
+    console.log(todoItem);
     const obj = {completed: false , item:todoItem};
     localStorage.setItem(todoItem,JSON.stringify(obj));
     state.todoItems.push(obj);
+    console.log(todoItem);
   }
 
   const removeOneItem = (state, payload) => {
     localStorage.removeItem(payload.todoItem.item);
     state.todoItems.splice(payload.index, 1);
   }
+
+  // const updateOneItem(state, todoItem){
+  //   const obj = {editing: flase, item:todoItem}  
+  //   localStorage.setItem(todoItem,JSON.stringify(obj));
+  //   state.todoItems.splice(payload.index, 1);
+  // },
 
   const toggleOneItem = (state, payload) => {
     //todoItem.completed = !todoItem.completed;
