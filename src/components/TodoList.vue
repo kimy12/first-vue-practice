@@ -2,12 +2,20 @@
   <div>
     <TransitionGroup tag="ul" name="list">
       <li v-for="(todoItem, index) in this.storedTodoItems" v-bind:key="todoItem.item" class="shadow">
-        <i class="fa-solid fa-check checkBtn" v-bind:class="{checkBtnCompleted: todoItem.completed}" v-on:click="toggleComplete({todoItem, index})"></i>
-        <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
+        <i class="fa-solid fa-check checkBtn" v-bind:class="{checkBtnCompleted: todoItem.completed}" v-on:click="toggleComplete({todoItem, index}), show = !show"></i>
+        <!-- <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span> -->
+        <div>
+          <input type="text" 
+                  :value="todoItem.item" 
+                  :class="{textCompleted: todoItem.completed, modifyNow: todoItem.editing}"
+                  ref="editing">
+        </div>
         <span class="btnBox">
-          <span class="modifyBtn" v-on:click="modifyTodo({todoItem, index})">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-          </span>
+          <transition name="fade">
+            <span v-if="show" class="modifyBtn" v-on:click="modifyTodo({todoItem, index})">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </span>
+          </transition>
           <span class="removeBtn" v-on:click="removeTodo({todoItem, index})">
             <i class="fa-solid fa-trash-can"></i>
           </span>
@@ -21,9 +29,15 @@
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
+  data: function (){
+    return {
+      show: true
+    }
+  },
   methods : {
       ...mapMutations({
         removeTodo: 'removeOneItem',
+        modifyTodo: 'updateOneItem',
         toggleComplete: 'toggleOneItem'
       })
   },
@@ -65,9 +79,24 @@ ul {
   .checkBtnCompleted {
     color: #b3adad;
   }
+  input {
+    border-style: none;
+    font-size: 0.9rem;
+    pointer-events:none;
+  }
+  input:focus {
+    outline: none;
+  }
+  /* .checkBtnCompleted input {
+    pointer-events:none;
+    
+  } */
   .textCompleted {
     text-decoration: line-through;
     color: #b3adad;
+  }
+  .modifyNow {
+    pointer-events:painted;
   }
   .btnBox {
     margin-left: auto;

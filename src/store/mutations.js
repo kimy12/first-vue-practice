@@ -11,14 +11,7 @@
     state.todoItems.splice(payload.index, 1);
   }
 
-  // const updateOneItem(state, todoItem){
-  //   const obj = {editing: flase, item:todoItem}  
-  //   localStorage.setItem(todoItem,JSON.stringify(obj));
-  //   state.todoItems.splice(payload.index, 1);
-  // },
-
   const toggleOneItem = (state, payload) => {
-    //todoItem.completed = !todoItem.completed;
     state.todoItems[payload.index].completed = !state.todoItems[payload.index].completed;
     localStorage.removeItem(payload.todoItem.item);
     localStorage.setItem(payload.todoItem.item, JSON.stringify(payload.todoItem));
@@ -29,4 +22,4 @@
     this.state.todoItems = [];
   }
 
-  export { addOneItem, removeOneItem, toggleOneItem, clearAllItems }
+  export { addOneItem, removeOneItem, toggleOneItem, clearAllItems, updateOneItem }

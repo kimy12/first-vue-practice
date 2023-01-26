@@ -15,8 +15,7 @@
 }
   
   const state= {
-    todoItems: storage.fetch(),
-    inputItem: ""
+    todoItems: storage.fetch()
   };
 
   const getters = {
@@ -26,7 +25,7 @@
   };
   const mutations = {
     addOneItem(state, todoItem) {
-    const obj = {completed: false , item:todoItem};
+    const obj = {completed: false , editing: false, item:todoItem};
     if(todoItem != ''){
       localStorage.setItem(todoItem,JSON.stringify(obj));
       state.todoItems.push(obj);
@@ -36,10 +35,13 @@
   },
 
   // 글 수정
-  // updateOneItem(state, payload){
-  //   localStorage.removeItem(payload.todoItem.item);
-  //   state.todoItems.splice(payload.index, 1);
-  // },
+  updateOneItem(state, payload){
+    console.log(payload);
+    console.log(state);
+    state.todoItems[payload.index].editing = !state.todoItems[payload.index].editing;
+    // localStorage.removeItem(payload.todoItem.item);
+    // state.todoItems.splice(payload.index, 1);
+  },
 
   removeOneItem(state, payload){
     localStorage.removeItem(payload.todoItem.item);
