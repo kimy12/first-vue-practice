@@ -1,9 +1,7 @@
   const addOneItem = (state, todoItem) => {
-    console.log(todoItem);
     const obj = {completed: false , item:todoItem};
     localStorage.setItem(todoItem,JSON.stringify(obj));
     state.todoItems.push(obj);
-    console.log(todoItem);
   }
 
   const removeOneItem = (state, payload) => {

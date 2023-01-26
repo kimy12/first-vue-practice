@@ -2,11 +2,13 @@
   <div>
     <TransitionGroup tag="ul" name="list">
       <li v-for="(todoItem, index) in this.storedTodoItems" v-bind:key="todoItem.item" class="shadow">
-        <i class="fa-solid fa-check checkBtn" v-bind:class="{checkBtnCompleted: todoItem.completed}" v-on:click="toggleComplete({todoItem, index}), show = !show"></i>
+        <i class="fa-solid fa-check checkBtn" 
+           v-bind:class="{checkBtnCompleted: todoItem.completed}" 
+           v-on:click="toggleComplete({todoItem, index}), show = !show"></i>
         <!-- <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span> -->
         <div>
           <input type="text" 
-                  :value="todoItem.item" 
+                  v-model="todoItem.item" 
                   :class="{textCompleted: todoItem.completed, modifyNow: todoItem.editing}"
                   ref="editing">
         </div>
