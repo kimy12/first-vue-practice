@@ -4,7 +4,7 @@
       <li v-for="(todoItem, index) in this.storedTodoItems" v-bind:key="todoItem.item" class="shadow">
         <i class="fa-solid fa-check checkBtn" 
            v-bind:class="{checkBtnCompleted: todoItem.completed}" 
-           v-on:click="toggleComplete({todoItem, index}), show = !show"></i>
+           v-on:click="toggleComplete({todoItem, index})"></i>
         <!-- <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span> -->
         <div>
           <input type="text" 
@@ -14,7 +14,7 @@
         </div>
         <span class="btnBox">
           <transition name="fade">
-            <span v-if="show" class="modifyBtn" v-on:click="modifyTodo({todoItem, index})">
+            <span v-if="todoItem.penIcon" class="modifyBtn" v-on:click="modifyTodo({todoItem, index})">
               <i class="fa fa-pencil" aria-hidden="true"></i>
             </span>
           </transition>

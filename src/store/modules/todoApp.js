@@ -26,7 +26,12 @@
   const mutations = {
 
     addOneItem(state, todoItem) {
-    const obj = {completed: false , editing: false, item:todoItem};
+    const obj = {
+      completed: false , 
+      editing: false, 
+      item:todoItem,
+      penIcon : true
+    };
     if(todoItem != ''){
       localStorage.setItem(todoItem,JSON.stringify(obj));
       state.todoItems.push(obj);
@@ -56,6 +61,8 @@
   toggleOneItem (state, payload) {
     //todoItem.completed = !todoItem.completed;
     state.todoItems[payload.index].completed = !state.todoItems[payload.index].completed;
+    //아이콘 생성
+    state.todoItems[payload.index].penIcon = !state.todoItems[payload.index].penIcon;
     localStorage.removeItem(payload.todoItem.item);
     localStorage.setItem(payload.todoItem.item, JSON.stringify(payload.todoItem));
   },

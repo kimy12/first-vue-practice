@@ -20,4 +20,4 @@
     this.state.todoItems = [];
   }
 
-  export { addOneItem, removeOneItem, toggleOneItem, clearAllItems, updateOneItem }
+  export { addOneItem, removeOneItem, toggleOneItem, clearAllItems}
