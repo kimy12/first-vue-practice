@@ -6,15 +6,16 @@
            v-bind:class="{checkBtnCompleted: todoItem.completed}" 
            v-on:click="toggleComplete({todoItem, index})"></i>
         <!-- <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span> -->
-        <div>
-          <input type="text" 
-                  v-model="todoItem.item" 
-                  :class="{textCompleted: todoItem.completed, modifyNow: todoItem.editing}"
-                  ref="editing">
-        </div>
+        <!-- <div>
+          
+        </div> -->
         <span class="btnBox">
-          <transition name="fade">
-            <span v-if="todoItem.penIcon" class="modifyBtn" v-on:click="modifyTodo({todoItem, index})">
+          <input type="text" 
+                v-model="todoItem.item" 
+                :class="{textCompleted: todoItem.completed, modifyNow: todoItem.editing}"
+                >
+          <transition name="fade"> 
+            <span v-if="todoItem.penIcon" ref="editing" class="modifyBtn" v-on:click="modifyTodo({todoItem, index})">
               <i class="fa fa-pencil" aria-hidden="true"></i>
             </span>
           </transition>
@@ -31,17 +32,15 @@
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
-  data: function (){
-    return {
-      show: true
-    }
-  },
   methods : {
       ...mapMutations({
         removeTodo: 'removeOneItem',
         modifyTodo: 'updateOneItem',
         toggleComplete: 'toggleOneItem'
-      })
+      }),
+  //   modifyTodo(payload){
+  //     this.$refs.editing[payload.index].previousSibling.focus();
+  // }
   },
   computed: {
     // todoItems(){
@@ -100,9 +99,9 @@ ul {
   .modifyNow {
     pointer-events:painted;
   }
-  .btnBox {
+  /* .btnBox {
     margin-left: auto;
-  }
+  } */
   .removeBtn {
     /* margin-left: auto; */
     color: #de4343;

@@ -44,11 +44,8 @@
   updateOneItem(state, payload){
     // 새로 세팅되는 데이터
     // const obj = {completed: false , editing: false, item:state.todoItems[payload.index].item};
-    console.log(payload);
-    console.log(state);
     //수정가능한 상태
     state.todoItems[payload.index].editing = !state.todoItems[payload.index].editing;
-    //ref.$refs.editing.focus();
     // localStorage.removeItem(payload.todoItem.item);
     // state.todoItems.splice(payload.index, 1);
   },

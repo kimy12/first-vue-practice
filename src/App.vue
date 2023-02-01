@@ -51,6 +51,9 @@ export default {
 </script>
 
 <style>
+  #app {
+    position: absolute;
+  }
   body {
     text-align: center;
     background-color: #f6f6f6;
