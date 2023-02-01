@@ -53,6 +53,7 @@ export default {
 <style>
   #app {
     position: absolute;
+    width: 252px;
   }
   body {
     text-align: center;

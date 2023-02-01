@@ -11,9 +11,15 @@
         </div> -->
         <span class="btnBox">
           <input type="text" 
-                v-model="todoItem.item" 
+                :value="todoItem.item"
+                @input="updateMessage({ todoItem, index }, $event.target.value)"
                 :class="{textCompleted: todoItem.completed, modifyNow: todoItem.editing}"
-                >
+                v-if="todoItem.editing"
+                > 
+          <span v-if="!todoItem.editing" 
+                :class="{textCompleted: todoItem.completed, modifyNow: todoItem.editing}">
+            {{ todoItem.item }}
+          </span>
           <transition name="fade"> 
             <span v-if="todoItem.penIcon" ref="editing" class="modifyBtn" v-on:click="modifyTodo({todoItem, index})">
               <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -38,6 +44,10 @@ export default {
         modifyTodo: 'updateOneItem',
         toggleComplete: 'toggleOneItem'
       }),
+      updateMessage(e, e2){
+        console.log(e.index);
+        console.log(e2);
+      }
   //   modifyTodo(payload){
   //     this.$refs.editing[payload.index].previousSibling.focus();
   // }
@@ -71,6 +81,7 @@ ul {
     padding: 0 0.9rem;
     background: white;
     border-radius: 5px;
+    position: relative;
   }
   .checkBtn {
     line-height: 45px;
@@ -83,7 +94,7 @@ ul {
   input {
     border-style: none;
     font-size: 0.9rem;
-    pointer-events:none;
+    /* pointer-events:none; */
   }
   input:focus {
     outline: none;
@@ -97,19 +108,20 @@ ul {
     color: #b3adad;
   }
   .modifyNow {
-    pointer-events:painted;
+    /* pointer-events:painted; */
   }
-  /* .btnBox {
-    margin-left: auto;
-  } */
+  .btnBox span{
+    font-size: 0.9rem
+  } 
   .removeBtn {
-    /* margin-left: auto; */
+    position: absolute;
     color: #de4343;
+    right: 14px;
   }
   .modifyBtn {
-    margin-right: 12px;
-    /* margin-left: auto; */
     color: #696969;
+    position: absolute;
+    right: 39px;
   }
 
   .list-enter-active,
