@@ -20,17 +20,4 @@
     this.state.todoItems = [];
   }
 
-  // 글 수정
-  const updateOneItem = (state, payload) => {
-    // 새로 세팅되는 데이터
-    // const obj = {completed: false , editing: false, item:state.todoItems[payload.index].item};
-    console.log(state);
-    console.log(payload);
-    //수정가능한 상태
-    state.todoItems[payload.index].editing = !state.todoItems[payload.index].editing;
-    //ref.$refs.editing.focus();
-    // localStorage.removeItem(payload.todoItem.item);
-    // state.todoItems.splice(payload.index, 1);
-  }
-
   export { addOneItem, removeOneItem, toggleOneItem, clearAllItems, updateOneItem}

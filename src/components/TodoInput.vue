@@ -1,7 +1,6 @@
 <template>
   <div class="inputBox shadow">
     <input type="text" v-model="newTodoItem" v-on:keydown.enter="addTodo" placeholder="입력하세요.">
-    <!-- <button v-on:click="addTodo">add</button> -->
     <span class="addContainer" v-on:click="addTodo">
       <i class="fa-solid fa-plus addBtn"></i>
     </span>
@@ -50,7 +49,6 @@ export default {
         this.$store.commit('addOneItem', text);
         this.clearInput();
       } else {
-        //this.showModal = true;
         this.showModal = !this.showModal;
       }
     },
@@ -81,7 +79,6 @@ export default {
   }
   .addContainer {
     float : right;
-    /* background: linear-gradient(to right, #6478FB, #8763FB); */
     background: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
     display: block;
     width: 3rem;

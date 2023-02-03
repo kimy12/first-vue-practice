@@ -1,7 +1,7 @@
 <template>
   <div>
     <TransitionGroup tag="ul" name="list">
-      <li v-for="(todoItem, index) in this.storedTodoItems" v-bind:key="todoItem.item" class="shadow">
+      <li v-for="(todoItem, index) in this.storedTodoItems" v-bind:key="todoItem.keyNum" class="shadow">
         <i class="fa-solid fa-check checkBtn" 
            v-bind:class="{checkBtnCompleted: todoItem.completed}" 
            v-on:click="toggleComplete({todoItem, index})"></i>
@@ -9,6 +9,7 @@
           <input type="text" 
                 :value="todoItem.item"
                 @input="updateMessage({ todoItem, index }, $event.target.value)"
+                v-on:keydown.enter="$event.target.blur()"
                 @blur="modifyTodo(updateMessage({ todoItem, index }, $event.target.value))"
                 :class="{textCompleted: todoItem.completed, modifyNow: todoItem.editing}"
                 v-if="todoItem.editing"
@@ -18,9 +19,6 @@
             {{ todoItem.item }}
           </span>
           <transition name="fade"> 
-            <!-- <span v-if="todoItem.penIcon" ref="editing" class="modifyBtn" v-on:click="modifyTodo(index)">
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </span> -->
             <span v-if="todoItem.penIcon" ref="editing" class="modifyBtn" v-on:click="modifyTodo({todoItem, index})">
               <i class="fa fa-pencil" aria-hidden="true"></i>
             </span>
@@ -89,7 +87,6 @@ ul {
   input {
     border-style: none;
     font-size: 0.9rem;
-    /* pointer-events:none; */
   }
   input:focus {
     outline: none;

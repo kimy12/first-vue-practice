@@ -49,27 +49,18 @@
     // 새로 세팅되는 데이터
     const obj = JSON.parse(localStorage.getItem(state.todoItems[payload.index].keyNum));
     
-    // const obj = {
-    //   keyNum : keyNum,
-    //   completed: false , 
-    //   editing: false, 
-    //   item:payload.formText,
-    //   penIcon : true,
-    //   deleteYn : false
-    // };
-
-    if(state.todoItems[payload.index].editing == false){
-      //수정가능한 상태
-      state.todoItems[payload.index].editing = !state.todoItems[payload.index].editing;
-    } else {
-      console.log(payload);
-      console.log(state.todoItems);
-
-      state.todoItems[payload.index].editing = !state.todoItems[payload.index].editing;
-      localStorage.setItem(payload.todoItem.item, JSON.stringify(obj));
-      // state.todoItems.splice(payload.index, 1, obj);\
-      state.todoItems.map((e)=> e.item == payload.todoItem.item ? {...e, item: payload.formText} : e);
-    }
+    const key = payload.todoItem.keyNum;
+    
+    if(state.todoItems[payload.index].editing == true){
+      obj.item = payload.formText;
+      localStorage.removeItem(key);
+      localStorage.setItem(key, JSON.stringify(obj));
+      state.todoItems[payload.index].item = payload.formText;
+    } 
+    //수정가능여부 변경
+    state.todoItems[payload.index].editing = !state.todoItems[payload.index].editing;
+    //수정아이콘 유무 변경
+    state.todoItems[payload.index].penIcon = !state.todoItems[payload.index].penIcon;
   },
 
   //삭제
@@ -84,7 +75,6 @@
 
   //완료여부
   toggleOneItem (state, payload) {
-    //todoItem.completed = !todoItem.completed;
     state.todoItems[payload.index].completed = !state.todoItems[payload.index].completed;
     //아이콘 생성
     state.todoItems[payload.index].penIcon = !state.todoItems[payload.index].penIcon;
