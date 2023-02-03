@@ -76,14 +76,17 @@ export default {
   }
   .inputBox input {
     border-style: none;
+    width: 172px;
     font-size: 0.9rem;
   }
   .addContainer {
     float : right;
-    background: linear-gradient(to right, #6478FB, #8763FB);
+    /* background: linear-gradient(to right, #6478FB, #8763FB); */
+    background: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
     display: block;
     width: 3rem;
     border-radius: 0 5px 5px 0;
+    cursor: pointer;
   }
   .addBtn {
     color : white;

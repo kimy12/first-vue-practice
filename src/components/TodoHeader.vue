@@ -1,7 +1,7 @@
 <template>
   <header>
     <h1>
-    TODO it!
+    TODO
     </h1>
   </header>
 </template>

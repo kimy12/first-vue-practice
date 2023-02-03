@@ -5,14 +5,11 @@
         <i class="fa-solid fa-check checkBtn" 
            v-bind:class="{checkBtnCompleted: todoItem.completed}" 
            v-on:click="toggleComplete({todoItem, index})"></i>
-        <!-- <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span> -->
-        <!-- <div>
-          
-        </div> -->
         <span class="btnBox">
           <input type="text" 
                 :value="todoItem.item"
                 @input="updateMessage({ todoItem, index }, $event.target.value)"
+                @blur="modifyTodo(updateMessage({ todoItem, index }, $event.target.value))"
                 :class="{textCompleted: todoItem.completed, modifyNow: todoItem.editing}"
                 v-if="todoItem.editing"
                 > 
@@ -21,6 +18,9 @@
             {{ todoItem.item }}
           </span>
           <transition name="fade"> 
+            <!-- <span v-if="todoItem.penIcon" ref="editing" class="modifyBtn" v-on:click="modifyTodo(index)">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </span> -->
             <span v-if="todoItem.penIcon" ref="editing" class="modifyBtn" v-on:click="modifyTodo({todoItem, index})">
               <i class="fa fa-pencil" aria-hidden="true"></i>
             </span>
@@ -44,23 +44,17 @@ export default {
         modifyTodo: 'updateOneItem',
         toggleComplete: 'toggleOneItem'
       }),
-      updateMessage(e, e2){
-        console.log(e.index);
-        console.log(e2);
+      updateMessage(payload, item){
+        const text = item.trim();
+        payload.formText = text;
+        return payload;
       }
-  //   modifyTodo(payload){
-  //     this.$refs.editing[payload.index].previousSibling.focus();
-  // }
   },
   computed: {
     // todoItems(){
     //   return this.$store.getters.storedTodoItems
     // }
     ...mapGetters(['storedTodoItems'])
-    //만약에 이름이 다른경우?
-    // ...mapGetters({ 
-    //   todoItems: 'storedTodoItems'
-    // })
   }
 }
 </script>
@@ -87,6 +81,7 @@ ul {
     line-height: 45px;
     color: #62acde;
     margin-right: 5px;
+    cursor: pointer;
   }
   .checkBtnCompleted {
     color: #b3adad;
@@ -115,13 +110,15 @@ ul {
   } 
   .removeBtn {
     position: absolute;
-    color: #de4343;
+    color: #A8BFFF;
     right: 14px;
+    cursor: pointer;
   }
   .modifyBtn {
     color: #696969;
     position: absolute;
     right: 39px;
+    cursor: pointer;
   }
 
   .list-enter-active,
