@@ -52,10 +52,12 @@
     const key = payload.todoItem.keyNum;
     
     if(state.todoItems[payload.index].editing == true){
-      obj.item = payload.formText;
-      localStorage.removeItem(key);
-      localStorage.setItem(key, JSON.stringify(obj));
-      state.todoItems[payload.index].item = payload.formText;
+      if(payload.formText != undefined){
+        obj.item = payload.formText;
+        localStorage.removeItem(key);
+        localStorage.setItem(key, JSON.stringify(obj));
+        state.todoItems[payload.index].item = payload.formText;
+      }
     } 
     //수정가능여부 변경
     state.todoItems[payload.index].editing = !state.todoItems[payload.index].editing;
