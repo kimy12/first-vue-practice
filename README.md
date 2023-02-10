@@ -1,5 +1,8 @@
 # vue-todo
 
+## Demo
+[Demo](https://kimy12.github.io/first-vue-practice/)
+
 ## Project setup
 ```
 npm install
