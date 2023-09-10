@@ -22,6 +22,9 @@
             <span v-if="todoItem.penIcon" ref="editing" class="modifyBtn" v-on:click="modifyTodo({todoItem, index})">
               <i class="fa fa-pencil" aria-hidden="true"></i>
             </span>
+            <span v-if="!todoItem.penIcon" class="modifyBtn" v-on:click="modifyTodo({todoItem, index})">
+              <i class="fa-solid fa-xmark"></i>
+            </span>
           </transition>
           <span class="removeBtn" v-on:click="removeTodo({todoItem, index})">
             <i class="fa-solid fa-trash-can"></i>

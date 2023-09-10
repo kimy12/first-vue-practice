@@ -16,3 +16,7 @@ module.exports = defineConfig({
   },
 
 })
+
+module.exports = {
+  publicPath: '/first-vue-practice',
+}
