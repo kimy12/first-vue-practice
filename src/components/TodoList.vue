@@ -64,20 +64,20 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+//import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   methods : {
-      ...mapMutations({
-        removeTodo: 'removeOneItem',
-        modifyTodo: 'updateOneItem',
-        toggleComplete: 'toggleOneItem'
-      }),
-      updateMessage(payload, item){
-        const text = item.trim();
-        payload.formText = text;
-        return payload;
-      }
+      // ...mapMutations({
+      //   removeTodo: 'removeOneItem',
+      //   modifyTodo: 'updateOneItem',
+      //   toggleComplete: 'toggleOneItem'
+      // }),
+      // updateMessage(payload, item){
+      //   const text = item.trim();
+      //   payload.formText = text;
+      //   return payload;
+      // }
   },
   computed: {
     // todoItems(){
