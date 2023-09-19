@@ -1,7 +1,7 @@
 <template>
   <div>
     <TransitionGroup tag="ul" name="list">
-      <li v-for="(todoItem, index) in this.storedTodoItems" v-bind:key="todoItem.keyNum" class="shadow">
+      <!-- <li v-for="(todoItem, index) in this.storedTodoItems" v-bind:key="todoItem.keyNum" class="shadow">
         <i class="fa-solid fa-check checkBtn" 
            v-bind:class="{checkBtnCompleted: todoItem.completed}" 
            v-on:click="toggleComplete({todoItem, index})"></i>
@@ -30,6 +30,34 @@
             <i class="fa-solid fa-trash-can"></i>
           </span>
         </span>
+      </li> -->
+      <li v-for="item in todoItems" v-bind:key="item.id" class="shadow">
+        <i class="fa-solid fa-check checkBtn" 
+           v-bind:class="{checkBtnCompleted: item.isCompleted}"></i>
+        <span class="btnBox">
+          <!-- <input type="text" 
+                :value="todoItem.item"
+                @input="updateMessage({ todoItem, index }, $event.target.value)"
+                v-on:keydown.enter="$event.target.blur()"
+                @blur="modifyTodo(updateMessage({ todoItem, index }, $event.target.value))"
+                :class="{textCompleted: todoItem.completed, modifyNow: todoItem.editing}"
+                v-if="todoItem.editing"
+                >  -->
+          <span>
+            {{ item.item }}
+          </span>
+          <!-- <transition name="fade"> 
+            <span v-if="todoItem.penIcon" ref="editing" class="modifyBtn" v-on:click="modifyTodo({todoItem, index})">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </span>
+            <span v-if="!todoItem.penIcon" class="modifyBtn" v-on:click="modifyTodo({todoItem, index})">
+              <i class="fa-solid fa-xmark"></i>
+            </span>
+          </transition> -->
+          <span class="removeBtn">
+            <i class="fa-solid fa-trash-can"></i>
+          </span>
+        </span>
       </li>
     </TransitionGroup>
   </div>
@@ -55,7 +83,13 @@ export default {
     // todoItems(){
     //   return this.$store.getters.storedTodoItems
     // }
-    ...mapGetters(['storedTodoItems'])
+    //...mapGetters(['storedTodoItems'])
+    todoItems(){
+      const todo = this.$route.todos;
+
+      return todo;
+    }
+    
   }
 }
 </script>
