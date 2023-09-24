@@ -9,6 +9,7 @@ module.exports = defineConfig({
 
   // npm run build 타겟 디렉토리 -> 해당 경로에 vue 빌드 출력물 생성됨
   outputDir: '../todo-backend/src/main/resources/static',
+  indexPath: '../todo-backend/src/main/resources/static/index.html',
 
   // npm run serve 개발 진행시에 포트가 다르기때문에 프록시 설정
   devServer: {
